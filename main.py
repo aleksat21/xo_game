@@ -13,16 +13,21 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         super(XO, self).__init__()
         self.setupUi(self)
 
-        self.buttons = [self.bt0, self.bt1, self.bt2, self.bt3, self.bt4, self.bt5, self.bt6, self.bt7, self.bt8]
+        self.buttons = {"bt0" : self.bt0, "bt1" : self.bt1, "bt2" : self.bt2, "bt3" : self.bt3, "bt4" : self.bt4, "bt5" : self.bt5, "bt6" : self.bt6, "bt7" : self.bt7, "bt8" :self.bt8}
 
-        self.btRestart.pressed.connect(lambda: self.btRestartAction())
-        self.btStart.pressed.connect(lambda: self.btStartAction())
+        # TODO dijagonale
+        self.lines = {"HU" : self.lnHU, "HC" : self.lnHC, "HB" : self.lnHB, "VL" : self.lnVL, "VC" : self.lnVC, "VR" : self.lnVR}
 
-        # TODO add seperate config function
+        # TODO add seperate config function ako se bude nakupilo naredbi
         self.game = None
         self.started = False
         self.lbPlayer.setMargin(10)
-
+        self.hideLines()
+        
+        # AKCIJE
+        self.btRestart.pressed.connect(lambda: self.btRestartAction())
+        self.btStart.pressed.connect(lambda: self.btStartAction())
+        
         self.bt0.pressed.connect(lambda: self.bt0Action())
         self.bt1.pressed.connect(lambda: self.bt1Action())
         self.bt2.pressed.connect(lambda: self.bt2Action())
@@ -33,6 +38,7 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.bt7.pressed.connect(lambda: self.bt7Action())
         self.bt8.pressed.connect(lambda: self.bt8Action())
 
+
         # TODO ovo treba da ide ispod u else granu akcija kod dugmica
         self.tbUserManual.setText("Morate da kliknete na START dugme prvo!")
     
@@ -40,16 +46,26 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
     # TODO dodati da se iscrtava linija kada neko pobedi
 
     def clearButtons(self):
-        for button in self.buttons:
+        for name, button in self.buttons.items():
             button.setText("")
             button.setEnabled(True)
+
+    # TODO dijagonale
+    def hideLines(self):
+        self.lnHB.hide()
+        self.lnHC.hide()
+        self.lnHU.hide()
+        self.lnVC.hide()
+        self.lnVL.hide()
+        self.lnVR.hide()
     
     def btRestartAction(self):
         self.clearButtons()
-        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons)
+        self.hideLines()
+        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons, lines=self.lines)
 
     def btStartAction(self):
-        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons)
+        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons, lines=self.lines)
         self.started = True
 
         self.bt1.setStyleSheet("""QPushButton{
@@ -65,31 +81,31 @@ QPushButton:pressed {
 
     def bt0Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(0, self.bt0)   
+            self.game.updateTableStatePlayer(0, self.buttons["bt0"])   
     def bt1Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(1, self.bt1)
+            self.game.updateTableStatePlayer(1, self.buttons["bt1"])
     def bt2Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(2, self.bt2)
+            self.game.updateTableStatePlayer(2, self.buttons["bt2"])
     def bt3Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(3, self.bt3)
+            self.game.updateTableStatePlayer(3, self.buttons["bt3"])
     def bt4Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(4, self.bt4)
+            self.game.updateTableStatePlayer(4, self.buttons["bt4"])
     def bt5Action(self):
         if self.started:    
-            self.game.updateTableStatePlayer(5, self.bt5)
+            self.game.updateTableStatePlayer(5, self.buttons["bt5"])
     def bt6Action(self):
         if self.started:            
-            self.game.updateTableStatePlayer(6, self.bt6)
+            self.game.updateTableStatePlayer(6, self.buttons["bt6"])
     def bt7Action(self):
         if self.started:    
-            self.game.updateTableStatePlayer(7, self.bt7)
+            self.game.updateTableStatePlayer(7, self.buttons["bt7"])
     def bt8Action(self):
         if self.started:
-            self.game.updateTableStatePlayer(8, self.bt8)
+            self.game.updateTableStatePlayer(8, self.buttons["bt8"])
     
 if __name__ == '__main__':
     app = QtWidgets.QApplication(sys.argv)

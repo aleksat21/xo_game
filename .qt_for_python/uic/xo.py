@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'xo.ui'
+# Form implementation generated from reading ui file '/home/aleksa/Desktop/projekti/xo_game/xo.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -465,13 +465,3 @@ class Ui_MainWindow(object):
         self.lbX.setText(_translate("MainWindow", "X"))
         self.lbPlayer_3.setText(_translate("MainWindow", "AI"))
         self.lbX_2.setText(_translate("MainWindow", "O"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

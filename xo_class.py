@@ -1,3 +1,4 @@
+from pickle import NONE
 from select import select
 from typing import List
 from unittest import case
@@ -10,13 +11,21 @@ from typing import List
 import copy
 
 class Game:
-    def __init__(self, tbUserManual: QtWidgets.QTextBrowser, buttons):
+    def __init__(self, tbUserManual: QtWidgets.QTextBrowser, buttons:dict = None, lines:dict = None):
         self.table_state = [['.', '.','.'], 
                             ['.', '.','.'], 
                             ['.', '.','.']]
+
+
+        # TODO podesiti da moze i racunar da bude X , to bi moralo u kontruktoru da se namesta i u Min, Max
+        # 1 je igrac, 2 je racunar za sada
         self.player_turn = 1
 
+
         self.buttons = buttons
+
+        self.finished = False
+        self.lines = lines
 
         self.tbUserManual = tbUserManual
         self.tbUserManual.setText(Game.get_uputstvo())
@@ -29,31 +38,78 @@ class Game:
         x_coord = (el - 1) // 3
         y_coord = (el - 1) % 3
         return (x_coord , y_coord)
-               
-    def evaluate(table_state):
+
+    def evaluate(self, table_state):
         if table_state[0][0] != '.':
-            if (table_state[0][0] == table_state[0][1] and table_state[0][1] == table_state[0][2]) or \
-                (table_state[0][0] == table_state[1][0] and table_state[1][0] == table_state[2][0]):
-                    if table_state[0][0] == 'X':
-                        return -1
-                    else:
-                        return 1 
+            if (table_state[0][0] == table_state[0][1] and table_state[0][1] == table_state[0][2]):
+                
+                if self.finished:
+                    self.lines["HU"].show()
+                
+                if table_state[0][0] == 'X':
+                    return -1
+                else:
+                    return 1 
+            elif (table_state[0][0] == table_state[1][0] and table_state[1][0] == table_state[2][0]):
+                
+                if self.finished:
+                    self.lines["VL"].show()
+
+                if table_state[0][0] == 'X':
+                    return -1
+                else:
+                    return 1 
         if table_state[1][1] != '.':
-            if (table_state[1][1] == table_state[0][1] and table_state[1][1] == table_state[2][1]) or \
-                (table_state[1][1] == table_state[1][0] and table_state[1][0] == table_state[1][2]) or \
-                (table_state[1][1] == table_state[0][2] and table_state[0][2] == table_state[2][0]) or \
-                (table_state[1][1] == table_state[0][0] and table_state[0][0] == table_state[2][2]):    
-                    if table_state[1][1] == 'X':
-                        return -1
-                    else:
-                        return 1
+            if (table_state[1][1] == table_state[0][1] and table_state[1][1] == table_state[2][1]):
+                
+                if self.finished:
+                    self.lines["VC"].show()
+                
+                if table_state[1][1] == 'X':
+                    return -1
+                else:
+                    return 1
+            elif (table_state[1][1] == table_state[1][0] and table_state[1][0] == table_state[1][2]):
+                
+                if self.finished:
+                    self.lines["HC"].show()
+                
+                if table_state[1][1] == 'X':
+                    return -1
+                else:
+                    return 1
+            elif (table_state[1][1] == table_state[0][2] and table_state[0][2] == table_state[2][0]):
+                # TODO dijagonala
+                if table_state[1][1] == 'X':
+                    return -1
+                else:
+                    return 1
+            elif(table_state[1][1] == table_state[0][0] and table_state[0][0] == table_state[2][2]):   
+                # TODO dijagonala
+                if table_state[1][1] == 'X':
+                    return -1
+                else:
+                    return 1
         if table_state[2][2] != '.':
-             if (table_state[2][2] == table_state[2][1] and table_state[2][1] == table_state[2][0]) or \
-                (table_state[2][2] == table_state[1][2] and table_state[1][2] == table_state[0][2]):
-                    if table_state[2][2] == 'X':
-                        return -1
-                    else:
-                        return 1
+            if (table_state[2][2] == table_state[2][1] and table_state[2][1] == table_state[2][0]):
+                
+                if self.finished:
+                    self.lines["HB"].show()
+                
+                if table_state[2][2] == 'X':
+                    return -1
+                else:
+                    return 1
+            elif (table_state[2][2] == table_state[1][2] and table_state[1][2] == table_state[0][2]):
+                
+                if self.finished:
+                    self.lines["VR"].show()
+                
+                if table_state[2][2] == 'X':
+                    return -1
+                else:
+                    return 1
+        
         for array in table_state:
             for el in array:
                 if el == '.':
@@ -74,15 +130,18 @@ class Game:
         return zip(next_states, next_steps)
     
     def testWinner(self):
-        pobednik = Game.evaluate(self.table_state)
+        pobednik = self.evaluate(self.table_state)
 
         restart = "Pritisnite restart da biste poceli ponovo partiju.."
-        if pobednik == -1:
-            self.tbUserManual.setText("Pobedio je igrac!\n\n" + restart)
-        elif pobednik == 1:
-            self.tbUserManual.setText('Pobedio je racunar!\n\n' + restart)
-        elif pobednik == 0:
-            self.tbUserManual.setText('Nereseno je!\n' + restart)
+        if pobednik != None:
+            self.finished = True
+            pobednik = self.evaluate(self.table_state)
+            if pobednik == -1:
+                self.tbUserManual.setText("Pobedio je igrac!\n\n" + restart)
+            elif pobednik == 1:
+                self.tbUserManual.setText('Pobedio je racunar!\n\n' + restart)
+            elif pobednik == 0:
+                self.tbUserManual.setText('Nereseno je!\n' + restart)
 
         return pobednik
     
@@ -110,35 +169,33 @@ class Game:
                 self.updateTableStateAI()
     
     def updateTableStateAI(self):
-        # TODO alpha-beta optimizacija
-        # TODO osigurati se kada igra AI da se disabluju dugmici pa kasnije da se aktiviraju ponovo samo oni koji su pre poteza bili aktivni
-        (best_table_state , x, y) = Game.Max(self.table_state)
+        if self.player_turn == 2:
+            # TODO alpha-beta optimizacija
+            # TODO osigurati se kada igra AI da se disabluju dugmici pa kasnije da se aktiviraju ponovo samo oni koji su pre poteza bili aktivni
+            (best_table_state , x, y) = self.Max(self.table_state)
 
-        self.table_state[x][y] = 'O'
+            self.table_state[x][y] = 'O'
+            rbr = x * 3 + y
 
-        rbr = x * 3 + y
-        for i, button in enumerate(self.buttons):
-            if i == rbr:
-                button.setStyleSheet("""QPushButton{
-	                                    background-color: rgb(186, 189, 182);
-	                                    border-radius: 20px;
-	                                    font: 30pt "Times New Roman";
-	                                    color:rgb(0, 0, 0);
-                                    }
-                                    QPushButton:pressed {
-                                        background-color: rgb(156, 159, 152);
-                                        border-style: inset;
-                                    } """)
-                button.setText("O")
+            self.buttons[f"bt{rbr}"].setStyleSheet("""QPushButton{
+                                    background-color: rgb(186, 189, 182);
+                                    border-radius: 20px;
+                                    font: 30pt "Times New Roman";
+                                    color:rgb(0, 0, 0);
+                                }
+                                QPushButton:pressed {
+                                    background-color: rgb(156, 159, 152);
+                                    border-style: inset;
+                                } """)
+            self.buttons[f"bt{rbr}"].setText("O")
+            self.buttons[f"bt{rbr}"].setEnabled(False)
 
-                button.setEnabled(False)
-                break
-        
-        if self.testWinner() == None:
-            self.player_turn = 1
+            
+            if self.testWinner() == None:
+                self.player_turn = 1
 
-    def Max(table_state):
-        current_evaluation = Game.evaluate(table_state)
+    def Max(self, table_state):
+        current_evaluation = self.evaluate(table_state)
 
         if current_evaluation != None:
             return (current_evaluation, None, None)
@@ -149,7 +206,7 @@ class Game:
         best_y = None
 
         for next_state, coords in Game.getNextSteps(table_state, 'O'):
-            max_of_min, x, y = Game.Min(next_state)
+            max_of_min, x, y = self.Min(next_state)
 
             if max_of_min > a:
                 a = max_of_min
@@ -158,8 +215,8 @@ class Game:
 
         return a , best_x, best_y         
 
-    def Min(table_state):
-        current_evaluation = Game.evaluate(table_state)
+    def Min(self, table_state):
+        current_evaluation = self.evaluate(table_state)
 
         if current_evaluation != None:
             return (current_evaluation, None, None)
@@ -170,7 +227,7 @@ class Game:
         best_y = None
 
         for next_state, coords in Game.getNextSteps(table_state, 'X'):
-            min_of_max, x, y = Game.Max(next_state)
+            min_of_max, x, y = self.Max(next_state)
 
             if min_of_max < a:
                 a = min_of_max
