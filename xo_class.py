@@ -11,7 +11,7 @@ from typing import List
 import copy
 
 class Game:
-    def __init__(self, tbUserManual: QtWidgets.QTextBrowser, buttons:dict = None, lines:dict = None):
+    def __init__(self, buttons:dict = None, lines:dict = None, graphicsView:QtWidgets.QGraphicsView = None):
         self.table_state = [['.', '.','.'], 
                             ['.', '.','.'], 
                             ['.', '.','.']]
@@ -27,12 +27,7 @@ class Game:
         self.finished = False
         self.lines = lines
 
-        self.tbUserManual = tbUserManual
-        self.tbUserManual.setText(Game.get_uputstvo())
-
-    def get_uputstvo():
-        uputstvo = "Korisnicko uputstvo: \n 1 | 2 | 3 \n 4 | 5 | 6 \n 7 | 8 | 9\n"
-        return uputstvo
+        self.graphicsView = graphicsView
     
     def find_in_matrix(self, el):
         x_coord = (el - 1) // 3
@@ -80,12 +75,20 @@ class Game:
                     return 1
             elif (table_state[1][1] == table_state[0][2] and table_state[0][2] == table_state[2][0]):
                 # TODO dijagonala
+                if self.finished:
+                    self.graphicsView.raise_()
+                    self.lines["DTL"].show()
                 if table_state[1][1] == 'X':
                     return -1
                 else:
                     return 1
             elif(table_state[1][1] == table_state[0][0] and table_state[0][0] == table_state[2][2]):   
                 # TODO dijagonala
+                
+                if self.finished:
+                    self.graphicsView.raise_()
+                    self.lines["DTR"].show()
+                
                 if table_state[1][1] == 'X':
                     return -1
                 else:
@@ -137,11 +140,11 @@ class Game:
             self.finished = True
             pobednik = self.evaluate(self.table_state)
             if pobednik == -1:
-                self.tbUserManual.setText("Pobedio je igrac!\n\n" + restart)
+                pass
             elif pobednik == 1:
-                self.tbUserManual.setText('Pobedio je racunar!\n\n' + restart)
+                pass
             elif pobednik == 0:
-                self.tbUserManual.setText('Nereseno je!\n' + restart)
+                pass
 
         return pobednik
     

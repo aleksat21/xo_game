@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'xo.ui'
+# Form implementation generated from reading ui file '/home/aleksa/Desktop/projekti/xo_game/xo_backup.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.6
 #
@@ -25,10 +25,10 @@ class Ui_MainWindow(object):
         font.setKerning(True)
         MainWindow.setFont(font)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("background-color:qlineargradient(spread:pad, x1:0.08, y1:0.063, x2:0.99, y2:0.903, stop:0 rgba(114, 159, 207, 255), stop:1 rgba(255, 255, 255, 255))")
+        MainWindow.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.xo_object = QtWidgets.QWidget(self.centralwidget)
+        self.xo_object = QtWidgets.QGroupBox(self.centralwidget)
         self.xo_object.setEnabled(True)
         self.xo_object.setGeometry(QtCore.QRect(420, 200, 450, 450))
         self.xo_object.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -406,26 +406,12 @@ class Ui_MainWindow(object):
         self.lnVR.setFrameShape(QtWidgets.QFrame.VLine)
         self.lnVR.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.lnVR.setObjectName("lnVR")
-        self.gwCentralView = QtWidgets.QGraphicsView(self.centralwidget)
-        self.gwCentralView.setGeometry(QtCore.QRect(370, 180, 551, 491))
-        self.gwCentralView.setStyleSheet("background: transparent")
-        self.gwCentralView.setInteractive(True)
-        self.gwCentralView.setSceneRect(QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
-        self.gwCentralView.setObjectName("gwCentralView")
-        self.lnDiagTopLeft = QtWidgets.QFrame(self.centralwidget)
-        self.lnDiagTopLeft.setEnabled(True)
-        self.lnDiagTopLeft.setGeometry(QtCore.QRect(10, 140, 10, 650))
-        self.lnDiagTopLeft.setStyleSheet("background-color: rgb(46, 52, 54)")
-        self.lnDiagTopLeft.setFrameShape(QtWidgets.QFrame.VLine)
-        self.lnDiagTopLeft.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.lnDiagTopLeft.setObjectName("lnDiagTopLeft")
-        self.lnDiagTopRIght = QtWidgets.QFrame(self.centralwidget)
-        self.lnDiagTopRIght.setEnabled(True)
-        self.lnDiagTopRIght.setGeometry(QtCore.QRect(30, 140, 10, 650))
-        self.lnDiagTopRIght.setStyleSheet("background-color: rgb(46, 52, 54)")
-        self.lnDiagTopRIght.setFrameShape(QtWidgets.QFrame.VLine)
-        self.lnDiagTopRIght.setFrameShadow(QtWidgets.QFrame.Sunken)
-        self.lnDiagTopRIght.setObjectName("lnDiagTopRIght")
+        self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.graphicsView.setGeometry(QtCore.QRect(370, 160, 561, 541))
+        self.graphicsView.setInteractive(True)
+        self.graphicsView.setSceneRect(QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
+        self.graphicsView.setObjectName("graphicsView")
+        self.graphicsView.raise_()
         self.xo_object.raise_()
         self.horizontalFrame.raise_()
         self.btRestart.raise_()
@@ -437,9 +423,6 @@ class Ui_MainWindow(object):
         self.lnVC.raise_()
         self.lnHC.raise_()
         self.lnHU.raise_()
-        self.lnDiagTopLeft.raise_()
-        self.lnDiagTopRIght.raise_()
-        self.gwCentralView.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1202, 22))
@@ -461,13 +444,3 @@ class Ui_MainWindow(object):
         self.lbX.setText(_translate("MainWindow", "X"))
         self.lbPlayer_3.setText(_translate("MainWindow", "AI"))
         self.lbX_2.setText(_translate("MainWindow", "O"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
-    sys.exit(app.exec_())

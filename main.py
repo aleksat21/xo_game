@@ -1,12 +1,14 @@
+from ast import Import
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QShortcut
 from PyQt5.QtGui import QKeySequence
+from PyQt5.QtCore import Qt
 
 import os
 import sys
 import xo_ui
 import xo_class
-
+import copy
 
 class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,19 +17,27 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         self.buttons = {"bt0" : self.bt0, "bt1" : self.bt1, "bt2" : self.bt2, "bt3" : self.bt3, "bt4" : self.bt4, "bt5" : self.bt5, "bt6" : self.bt6, "bt7" : self.bt7, "bt8" :self.bt8}
 
-        # TODO dijagonale
-        self.lines = {"HU" : self.lnHU, "HC" : self.lnHC, "HB" : self.lnHB, "VL" : self.lnVL, "VC" : self.lnVC, "VR" : self.lnVR}
+
+        # init diagonals
+        self.configDiagonals()
+
+        self.lines = {"HU" : self.lnHU, "HC" : self.lnHC, "HB" : self.lnHB, "VL" : self.lnVL, "VC" : self.lnVC, "VR" : self.lnVR, "DTL" : self.lnDiagTopLeft, "DTR" : self.lnDiagTopRIght}
 
         # TODO add seperate config function ako se bude nakupilo naredbi
         self.game = None
         self.started = False
         self.lbPlayer.setMargin(10)
         self.hideLines()
-        
+
         # AKCIJE
         self.btRestart.pressed.connect(lambda: self.btRestartAction())
         self.btStart.pressed.connect(lambda: self.btStartAction())
         
+
+        # TODO needs more testing
+        # for rbr , (btName, btObj) in enumerate(self.buttons.items()):
+            # btObj.pressed.connect(lambda: self.btAction(rbr, btName))
+            
         self.bt0.pressed.connect(lambda: self.bt0Action())
         self.bt1.pressed.connect(lambda: self.bt1Action())
         self.bt2.pressed.connect(lambda: self.bt2Action())
@@ -37,14 +47,33 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.bt6.pressed.connect(lambda: self.bt6Action())
         self.bt7.pressed.connect(lambda: self.bt7Action())
         self.bt8.pressed.connect(lambda: self.bt8Action())
-
-
-        # TODO ovo treba da ide ispod u else granu akcija kod dugmica
-        self.tbUserManual.setText("Morate da kliknete na START dugme prvo!")
     
     # TODO dodati LCD display koji broji rezultat
     # TODO dodati da se iscrtava linija kada neko pobedi
 
+
+    def configDiagonals(self):
+
+        scene = QtWidgets.QGraphicsScene()
+
+        self.lnDiagTopLeft.setParent(None)
+        self.lnDiagTopRIght.setParent(None)
+
+        lineTopLeft = scene.addWidget(self.lnDiagTopLeft)
+        lineTopLeft.setPos(self.gwCentralView.x() + 270, self.gwCentralView.y()/2 - 10)
+        lineTopLeft.setRotation(45)
+        
+        lineTopRight  = scene.addWidget(self.lnDiagTopRIght)
+        lineTopRight.setPos(self.gwCentralView.x() / 2, self.gwCentralView.y()/2)
+        lineTopRight.setRotation(-45)
+
+        self.gwCentralView.setScene(scene)
+
+        self.lnDiagTopLeft.hide()
+        self.lnDiagTopRIght.hide()
+
+        self.gwCentralView.lower()
+        
     def clearButtons(self):
         for name, button in self.buttons.items():
             button.setText("")
@@ -52,20 +81,26 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
 
     # TODO dijagonale
     def hideLines(self):
-        self.lnHB.hide()
-        self.lnHC.hide()
-        self.lnHU.hide()
-        self.lnVC.hide()
-        self.lnVL.hide()
-        self.lnVR.hide()
-    
+        for name , line in self.lines.items():
+            line.hide()
+        # self.lnHB.hide()
+        # self.lnHC.hide()
+        # self.lnHU.hide()
+        # self.lnVC.hide()
+        # self.lnVL.hide()
+        # self.lnVR.hide()
+        # self.lnVR.hide()
+        # self.lnVR.hide()
+        self.gwCentralView.lower()
+
+
     def btRestartAction(self):
         self.clearButtons()
         self.hideLines()
-        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons, lines=self.lines)
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView)
 
     def btStartAction(self):
-        self.game = xo_class.Game(tbUserManual=self.tbUserManual, buttons=self.buttons, lines=self.lines)
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView)
         self.started = True
 
         self.bt1.setStyleSheet("""QPushButton{
@@ -78,6 +113,11 @@ QPushButton:pressed {
     background-color: rgb(156, 159, 152);
     border-style: inset;
 } """)
+
+    # TODO needs more testing
+    def btAction(self, rbr, name):
+        if self.started:
+            self.game.updateTableStatePlayer(rbr, self.buttons[name])   
 
     def bt0Action(self):
         if self.started:

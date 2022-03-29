@@ -34,7 +34,7 @@
    <string notr="true">background-color:qlineargradient(spread:pad, x1:0.08, y1:0.063, x2:0.99, y2:0.903, stop:0 rgba(114, 159, 207, 255), stop:1 rgba(255, 255, 255, 255))</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QFrame" name="xo_object">
+   <widget class="QWidget" name="xo_object" native="true">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -69,163 +69,8 @@ border-radius: 20px;</string>
      <property name="spacing">
       <number>10</number>
      </property>
-     <item row="0" column="1">
-      <widget class="QPushButton" name="bt1">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt &quot;Times New Roman&quot;;
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="2">
       <widget class="QPushButton" name="bt5">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt &quot;Times New Roman&quot;;
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="0">
-      <widget class="QPushButton" name="bt6">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt &quot;Times New Roman&quot;;
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="2">
-      <widget class="QPushButton" name="bt2">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt &quot;Times New Roman&quot;;
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="1">
-      <widget class="QPushButton" name="bt4">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::StrongFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt &quot;Times New Roman&quot;;
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string/>
-       </property>
-      </widget>
-     </item>
-     <item row="2" column="2">
-      <widget class="QPushButton" name="bt8">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -289,6 +134,37 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="bt3">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(186, 189, 182);
+	border-radius: 20px;
+	font: 30pt &quot;Times New Roman&quot;;
+	color:rgb(164, 0, 0);
+}
+QPushButton:pressed {
+    background-color: rgb(156, 159, 152);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
      <item row="2" column="1">
       <widget class="QPushButton" name="bt7">
        <property name="enabled">
@@ -320,8 +196,132 @@ QPushButton:pressed {
        </property>
       </widget>
      </item>
-     <item row="1" column="0">
-      <widget class="QPushButton" name="bt3">
+     <item row="2" column="0">
+      <widget class="QPushButton" name="bt6">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(186, 189, 182);
+	border-radius: 20px;
+	font: 30pt &quot;Times New Roman&quot;;
+	color:rgb(164, 0, 0);
+}
+QPushButton:pressed {
+    background-color: rgb(156, 159, 152);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2">
+      <widget class="QPushButton" name="bt8">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(186, 189, 182);
+	border-radius: 20px;
+	font: 30pt &quot;Times New Roman&quot;;
+	color:rgb(164, 0, 0);
+}
+QPushButton:pressed {
+    background-color: rgb(156, 159, 152);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2">
+      <widget class="QPushButton" name="bt2">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(186, 189, 182);
+	border-radius: 20px;
+	font: 30pt &quot;Times New Roman&quot;;
+	color:rgb(164, 0, 0);
+}
+QPushButton:pressed {
+    background-color: rgb(156, 159, 152);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QPushButton" name="bt1">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::StrongFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	background-color: rgb(186, 189, 182);
+	border-radius: 20px;
+	font: 30pt &quot;Times New Roman&quot;;
+	color:rgb(164, 0, 0);
+}
+QPushButton:pressed {
+    background-color: rgb(156, 159, 152);
+    border-style: inset;
+}</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="bt4">
        <property name="enabled">
         <bool>true</bool>
        </property>
@@ -452,74 +452,6 @@ QPushButton#btRestart:pressed {
     </property>
     <property name="flat">
      <bool>false</bool>
-    </property>
-   </widget>
-   <widget class="QTextBrowser" name="tbUserManual">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>470</y>
-      <width>321</width>
-      <height>241</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>20</pointsize>
-      <italic>true</italic>
-     </font>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QTextBrowser {
-	background-color: rgb(238, 238, 236) ;
-    border-style: outset;
-    border-width: 10px;
-    border-color: rgb(0, 0, 0);
-}</string>
-    </property>
-    <property name="html">
-     <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Times New Roman'; font-size:20pt; font-weight:400; font-style:italic;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="lbUserManual">
-    <property name="geometry">
-     <rect>
-      <x>10</x>
-      <y>410</y>
-      <width>321</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>Times New Roman</family>
-      <pointsize>20</pointsize>
-      <weight>75</weight>
-      <bold>true</bold>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QLabel{
-	
-	background-color: rgb(238, 238, 236);
-	border-style: outset;
-	border-width: 5px;
-	border-color: rgb(164, 0, 0)
-}</string>
-    </property>
-    <property name="text">
-     <string>User manual</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
     </property>
    </widget>
    <widget class="QFrame" name="horizontalFrame">
@@ -804,6 +736,82 @@ border-radius: 20px;</string>
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="gwCentralView">
+    <property name="geometry">
+     <rect>
+      <x>370</x>
+      <y>180</y>
+      <width>551</width>
+      <height>491</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent</string>
+    </property>
+    <property name="interactive">
+     <bool>true</bool>
+    </property>
+    <property name="sceneRect">
+     <rectf>
+      <x>0.000000000000000</x>
+      <y>0.000000000000000</y>
+      <width>0.000000000000000</width>
+      <height>0.000000000000000</height>
+     </rectf>
+    </property>
+   </widget>
+   <widget class="Line" name="lnDiagTopLeft">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>140</y>
+      <width>10</width>
+      <height>650</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(46, 52, 54)</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="lnDiagTopRIght">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>140</y>
+      <width>10</width>
+      <height>650</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(46, 52, 54)</string>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <zorder>xo_object</zorder>
+   <zorder>horizontalFrame</zorder>
+   <zorder>btRestart</zorder>
+   <zorder>horizontalFrame</zorder>
+   <zorder>horizontalFrame</zorder>
+   <zorder>lnVL</zorder>
+   <zorder>lnHB</zorder>
+   <zorder>lnVR</zorder>
+   <zorder>lnVC</zorder>
+   <zorder>lnHC</zorder>
+   <zorder>lnHU</zorder>
+   <zorder>lnDiagTopLeft</zorder>
+   <zorder>lnDiagTopRIght</zorder>
+   <zorder>gwCentralView</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

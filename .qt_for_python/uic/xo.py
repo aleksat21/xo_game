@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         MainWindow.setStyleSheet("background-color:qlineargradient(spread:pad, x1:0.08, y1:0.063, x2:0.99, y2:0.903, stop:0 rgba(114, 159, 207, 255), stop:1 rgba(255, 255, 255, 255))")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.xo_object = QtWidgets.QFrame(self.centralwidget)
+        self.xo_object = QtWidgets.QWidget(self.centralwidget)
         self.xo_object.setEnabled(True)
         self.xo_object.setGeometry(QtCore.QRect(420, 200, 450, 450))
         self.xo_object.setCursor(QtGui.QCursor(QtCore.Qt.ArrowCursor))
@@ -39,27 +39,6 @@ class Ui_MainWindow(object):
         self.gridLayout_2.setContentsMargins(10, 10, 10, 10)
         self.gridLayout_2.setSpacing(10)
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.bt1 = QtWidgets.QPushButton(self.xo_object)
-        self.bt1.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt1.sizePolicy().hasHeightForWidth())
-        self.bt1.setSizePolicy(sizePolicy)
-        self.bt1.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt1.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt1.setText("")
-        self.bt1.setObjectName("bt1")
-        self.gridLayout_2.addWidget(self.bt1, 0, 1, 1, 1)
         self.bt5 = QtWidgets.QPushButton(self.xo_object)
         self.bt5.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -81,90 +60,6 @@ class Ui_MainWindow(object):
         self.bt5.setText("")
         self.bt5.setObjectName("bt5")
         self.gridLayout_2.addWidget(self.bt5, 1, 2, 1, 1)
-        self.bt6 = QtWidgets.QPushButton(self.xo_object)
-        self.bt6.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt6.sizePolicy().hasHeightForWidth())
-        self.bt6.setSizePolicy(sizePolicy)
-        self.bt6.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt6.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt6.setText("")
-        self.bt6.setObjectName("bt6")
-        self.gridLayout_2.addWidget(self.bt6, 2, 0, 1, 1)
-        self.bt2 = QtWidgets.QPushButton(self.xo_object)
-        self.bt2.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt2.sizePolicy().hasHeightForWidth())
-        self.bt2.setSizePolicy(sizePolicy)
-        self.bt2.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt2.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt2.setText("")
-        self.bt2.setObjectName("bt2")
-        self.gridLayout_2.addWidget(self.bt2, 0, 2, 1, 1)
-        self.bt4 = QtWidgets.QPushButton(self.xo_object)
-        self.bt4.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt4.sizePolicy().hasHeightForWidth())
-        self.bt4.setSizePolicy(sizePolicy)
-        self.bt4.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt4.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt4.setText("")
-        self.bt4.setObjectName("bt4")
-        self.gridLayout_2.addWidget(self.bt4, 1, 1, 1, 1)
-        self.bt8 = QtWidgets.QPushButton(self.xo_object)
-        self.bt8.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt8.sizePolicy().hasHeightForWidth())
-        self.bt8.setSizePolicy(sizePolicy)
-        self.bt8.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt8.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt8.setText("")
-        self.bt8.setObjectName("bt8")
-        self.gridLayout_2.addWidget(self.bt8, 2, 2, 1, 1)
         self.bt0 = QtWidgets.QPushButton(self.xo_object)
         self.bt0.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -187,27 +82,6 @@ class Ui_MainWindow(object):
         self.bt0.setText("")
         self.bt0.setObjectName("bt0")
         self.gridLayout_2.addWidget(self.bt0, 0, 0, 1, 1)
-        self.bt7 = QtWidgets.QPushButton(self.xo_object)
-        self.bt7.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.bt7.sizePolicy().hasHeightForWidth())
-        self.bt7.setSizePolicy(sizePolicy)
-        self.bt7.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.bt7.setStyleSheet("QPushButton{\n"
-"    background-color: rgb(186, 189, 182);\n"
-"    border-radius: 20px;\n"
-"    font: 30pt \"Times New Roman\";\n"
-"    color:rgb(164, 0, 0);\n"
-"}\n"
-"QPushButton:pressed {\n"
-"    background-color: rgb(156, 159, 152);\n"
-"    border-style: inset;\n"
-"}")
-        self.bt7.setText("")
-        self.bt7.setObjectName("bt7")
-        self.gridLayout_2.addWidget(self.bt7, 2, 1, 1, 1)
         self.bt3 = QtWidgets.QPushButton(self.xo_object)
         self.bt3.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
@@ -229,6 +103,132 @@ class Ui_MainWindow(object):
         self.bt3.setText("")
         self.bt3.setObjectName("bt3")
         self.gridLayout_2.addWidget(self.bt3, 1, 0, 1, 1)
+        self.bt7 = QtWidgets.QPushButton(self.xo_object)
+        self.bt7.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt7.sizePolicy().hasHeightForWidth())
+        self.bt7.setSizePolicy(sizePolicy)
+        self.bt7.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt7.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt7.setText("")
+        self.bt7.setObjectName("bt7")
+        self.gridLayout_2.addWidget(self.bt7, 2, 1, 1, 1)
+        self.bt6 = QtWidgets.QPushButton(self.xo_object)
+        self.bt6.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt6.sizePolicy().hasHeightForWidth())
+        self.bt6.setSizePolicy(sizePolicy)
+        self.bt6.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt6.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt6.setText("")
+        self.bt6.setObjectName("bt6")
+        self.gridLayout_2.addWidget(self.bt6, 2, 0, 1, 1)
+        self.bt8 = QtWidgets.QPushButton(self.xo_object)
+        self.bt8.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt8.sizePolicy().hasHeightForWidth())
+        self.bt8.setSizePolicy(sizePolicy)
+        self.bt8.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt8.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt8.setText("")
+        self.bt8.setObjectName("bt8")
+        self.gridLayout_2.addWidget(self.bt8, 2, 2, 1, 1)
+        self.bt2 = QtWidgets.QPushButton(self.xo_object)
+        self.bt2.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt2.sizePolicy().hasHeightForWidth())
+        self.bt2.setSizePolicy(sizePolicy)
+        self.bt2.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt2.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt2.setText("")
+        self.bt2.setObjectName("bt2")
+        self.gridLayout_2.addWidget(self.bt2, 0, 2, 1, 1)
+        self.bt1 = QtWidgets.QPushButton(self.xo_object)
+        self.bt1.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt1.sizePolicy().hasHeightForWidth())
+        self.bt1.setSizePolicy(sizePolicy)
+        self.bt1.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt1.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt1.setText("")
+        self.bt1.setObjectName("bt1")
+        self.gridLayout_2.addWidget(self.bt1, 0, 1, 1, 1)
+        self.bt4 = QtWidgets.QPushButton(self.xo_object)
+        self.bt4.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.bt4.sizePolicy().hasHeightForWidth())
+        self.bt4.setSizePolicy(sizePolicy)
+        self.bt4.setFocusPolicy(QtCore.Qt.StrongFocus)
+        self.bt4.setStyleSheet("QPushButton{\n"
+"    background-color: rgb(186, 189, 182);\n"
+"    border-radius: 20px;\n"
+"    font: 30pt \"Times New Roman\";\n"
+"    color:rgb(164, 0, 0);\n"
+"}\n"
+"QPushButton:pressed {\n"
+"    background-color: rgb(156, 159, 152);\n"
+"    border-style: inset;\n"
+"}")
+        self.bt4.setText("")
+        self.bt4.setObjectName("bt4")
+        self.gridLayout_2.addWidget(self.bt4, 1, 1, 1, 1)
         self.bt0.raise_()
         self.bt1.raise_()
         self.bt2.raise_()
@@ -288,38 +288,6 @@ class Ui_MainWindow(object):
         self.btRestart.setDefault(False)
         self.btRestart.setFlat(False)
         self.btRestart.setObjectName("btRestart")
-        self.tbUserManual = QtWidgets.QTextBrowser(self.centralwidget)
-        self.tbUserManual.setGeometry(QtCore.QRect(10, 470, 321, 241))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(20)
-        font.setItalic(True)
-        self.tbUserManual.setFont(font)
-        self.tbUserManual.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.tbUserManual.setStyleSheet("QTextBrowser {\n"
-"    background-color: rgb(238, 238, 236) ;\n"
-"    border-style: outset;\n"
-"    border-width: 10px;\n"
-"    border-color: rgb(0, 0, 0);\n"
-"}")
-        self.tbUserManual.setObjectName("tbUserManual")
-        self.lbUserManual = QtWidgets.QLabel(self.centralwidget)
-        self.lbUserManual.setGeometry(QtCore.QRect(10, 410, 321, 51))
-        font = QtGui.QFont()
-        font.setFamily("Times New Roman")
-        font.setPointSize(20)
-        font.setBold(True)
-        font.setWeight(75)
-        self.lbUserManual.setFont(font)
-        self.lbUserManual.setStyleSheet("QLabel{\n"
-"    \n"
-"    background-color: rgb(238, 238, 236);\n"
-"    border-style: outset;\n"
-"    border-width: 5px;\n"
-"    border-color: rgb(164, 0, 0)\n"
-"}")
-        self.lbUserManual.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbUserManual.setObjectName("lbUserManual")
         self.horizontalFrame1 = QtWidgets.QFrame(self.centralwidget)
         self.horizontalFrame1.setGeometry(QtCore.QRect(0, 20, 331, 121))
         self.horizontalFrame1.setStyleSheet("background-color: rgb(238, 238, 236);\n"
@@ -438,6 +406,40 @@ class Ui_MainWindow(object):
         self.lnVR.setFrameShape(QtWidgets.QFrame.VLine)
         self.lnVR.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.lnVR.setObjectName("lnVR")
+        self.gwCentralView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.gwCentralView.setGeometry(QtCore.QRect(370, 180, 551, 491))
+        self.gwCentralView.setStyleSheet("background: transparent")
+        self.gwCentralView.setInteractive(True)
+        self.gwCentralView.setSceneRect(QtCore.QRectF(0.0, 0.0, 0.0, 0.0))
+        self.gwCentralView.setObjectName("gwCentralView")
+        self.lnDiagTopLeft = QtWidgets.QFrame(self.centralwidget)
+        self.lnDiagTopLeft.setEnabled(True)
+        self.lnDiagTopLeft.setGeometry(QtCore.QRect(10, 140, 10, 650))
+        self.lnDiagTopLeft.setStyleSheet("background-color: rgb(46, 52, 54)")
+        self.lnDiagTopLeft.setFrameShape(QtWidgets.QFrame.VLine)
+        self.lnDiagTopLeft.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.lnDiagTopLeft.setObjectName("lnDiagTopLeft")
+        self.lnDiagTopRIght = QtWidgets.QFrame(self.centralwidget)
+        self.lnDiagTopRIght.setEnabled(True)
+        self.lnDiagTopRIght.setGeometry(QtCore.QRect(30, 140, 10, 650))
+        self.lnDiagTopRIght.setStyleSheet("background-color: rgb(46, 52, 54)")
+        self.lnDiagTopRIght.setFrameShape(QtWidgets.QFrame.VLine)
+        self.lnDiagTopRIght.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.lnDiagTopRIght.setObjectName("lnDiagTopRIght")
+        self.xo_object.raise_()
+        self.horizontalFrame.raise_()
+        self.btRestart.raise_()
+        self.horizontalFrame.raise_()
+        self.horizontalFrame.raise_()
+        self.lnVL.raise_()
+        self.lnHB.raise_()
+        self.lnVR.raise_()
+        self.lnVC.raise_()
+        self.lnHC.raise_()
+        self.lnHU.raise_()
+        self.lnDiagTopLeft.raise_()
+        self.lnDiagTopRIght.raise_()
+        self.gwCentralView.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1202, 22))
@@ -455,12 +457,6 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "XO Game"))
         self.btStart.setText(_translate("MainWindow", "START"))
         self.btRestart.setText(_translate("MainWindow", "RESTART"))
-        self.tbUserManual.setHtml(_translate("MainWindow", "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0//EN\" \"http://www.w3.org/TR/REC-html40/strict.dtd\">\n"
-"<html><head><meta name=\"qrichtext\" content=\"1\" /><style type=\"text/css\">\n"
-"p, li { white-space: pre-wrap; }\n"
-"</style></head><body style=\" font-family:\'Times New Roman\'; font-size:20pt; font-weight:400; font-style:italic;\">\n"
-"<p align=\"center\" style=\"-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><br /></p></body></html>"))
-        self.lbUserManual.setText(_translate("MainWindow", "User manual"))
         self.lbPlayer.setText(_translate("MainWindow", "PLAYER"))
         self.lbX.setText(_translate("MainWindow", "X"))
         self.lbPlayer_3.setText(_translate("MainWindow", "AI"))
