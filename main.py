@@ -1,38 +1,103 @@
 from ast import Import
+from re import S
+from statistics import mode
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QShortcut
+from PyQt5.QtWidgets import QFileDialog, QShortcut, QMessageBox
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import Qt
 
-import os
-import sys
-import xo_ui
-import xo_class
-import copy
+import os, sys, copy
+import xo_ui, beginDialog_ui ,xo_class
+
+
+class BeginDialog(beginDialog_ui.Ui_Dialog, QtWidgets.QMainWindow):
+    # TODO mozda napraviti konstruktor koji pamti koja su imena bila kada se klikne na change mode
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+       
+        self.hideAllInput()
+        
+        self.btStart.pressed.connect(lambda: self.begin())
+        self.rbPVP.pressed.connect(lambda: self.showPVP())
+        self.rbSinglePlayer.pressed.connect(lambda: self.showSinglePlayer())
+
+    def clearAllInput(self):
+        self.lnPrvi.clear()
+        self.lnDrugi.clear()
+
+    def hideAllInput(self):
+        self.lnPrvi.hide()
+        self.lbPrvi.hide()
+
+        self.lnDrugi.hide()
+        self.lbDrugi.hide()
+    def showAllInput(self):
+        self.lnPrvi.show()
+        self.lbPrvi.show()
+        
+        self.lnDrugi.show()
+        self.lbDrugi.show()
+
+    def showSinglePlayer(self):
+        self.hideAllInput()
+        self.clearAllInput()
+
+        self.lnPrvi.show()
+        self.lbPrvi.show()
+
+    def showPVP(self):
+        self.hideAllInput()
+        self.clearAllInput()
+
+        self.showAllInput()
+        
+
+    def begin(self):
+        if self.rbSinglePlayer.isChecked() and len(self.lnPrvi.text()) != 0:
+            self.close()
+            xo = XO(mode = 1, player1 = self.lnPrvi.text())
+            xo.show()
+        if self.rbPVP.isChecked() and len(self.lnPrvi.text()) != 0 and len(self.lnDrugi.text()) != 0:
+            self.close()
+            xo = XO(mode = 2, player1=self.lnPrvi.text(), player2=self.lnDrugi.text())
+            xo.show()
+
 
 class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
-    def __init__(self):
+    # TODO staviti da se menjaju boje u zavisnosti ko je na redu
+    # TODO mozda staviti naizmenicno da se smenjuju kada je mode=2, odnosno ko je X a ko je O
+    def __init__(self, mode, player1 = "Player 1" , player2 = "AI"):
         super(XO, self).__init__()
         self.setupUi(self)
 
+        # mod 1 - vs AI 2 - pvp
+        self.mode = mode
+
+        # imena
+        self.lbPlayer1.setText(player1 + " (X) ")
+        self.lbPlayer2.setText(player2 + " (O) ")
+
+        # podesiti fiksnu duzinu
+        self.setFixedSize(1200, 800)
+
+
+        # mapiranje dugmica koji se prosledjuju xo_class.Game konstruktoru
         self.buttons = {"bt0" : self.bt0, "bt1" : self.bt1, "bt2" : self.bt2, "bt3" : self.bt3, "bt4" : self.bt4, "bt5" : self.bt5, "bt6" : self.bt6, "bt7" : self.bt7, "bt8" :self.bt8}
 
 
-        # init diagonals
+        # linije za crtanje kada neko pobedi koje se prosledju xo_class.Game konstruktoru
         self.configDiagonals()
-
         self.lines = {"HU" : self.lnHU, "HC" : self.lnHC, "HB" : self.lnHB, "VL" : self.lnVL, "VC" : self.lnVC, "VR" : self.lnVR, "DTL" : self.lnDiagTopLeft, "DTR" : self.lnDiagTopRIght}
 
         # TODO add seperate config function ako se bude nakupilo naredbi
-        self.game = None
-        self.started = False
-        self.lbPlayer.setMargin(10)
+
+        # u startu se ne crtaju linije za pobedu
         self.hideLines()
 
         # AKCIJE
         self.btRestart.pressed.connect(lambda: self.btRestartAction())
-        self.btStart.pressed.connect(lambda: self.btStartAction())
-        
+        self.btChangeMode.pressed.connect(lambda: self.btChangeModeAction())
 
         # TODO needs more testing
         # for rbr , (btName, btObj) in enumerate(self.buttons.items()):
@@ -47,10 +112,10 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.bt6.pressed.connect(lambda: self.bt6Action())
         self.bt7.pressed.connect(lambda: self.bt7Action())
         self.bt8.pressed.connect(lambda: self.bt8Action())
-    
-    # TODO dodati LCD display koji broji rezultat
-    # TODO dodati da se iscrtava linija kada neko pobedi
 
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode = self.mode)
+    
+        # TODO dodati LCD display koji broji rezultat
 
     def configDiagonals(self):
 
@@ -79,76 +144,55 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
             button.setText("")
             button.setEnabled(True)
 
-    # TODO dijagonale
     def hideLines(self):
         for name , line in self.lines.items():
             line.hide()
-        # self.lnHB.hide()
-        # self.lnHC.hide()
-        # self.lnHU.hide()
-        # self.lnVC.hide()
-        # self.lnVL.hide()
-        # self.lnVR.hide()
-        # self.lnVR.hide()
-        # self.lnVR.hide()
         self.gwCentralView.lower()
 
 
     def btRestartAction(self):
         self.clearButtons()
         self.hideLines()
-        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView)
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode=self.mode)
 
-    def btStartAction(self):
-        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView)
-        self.started = True
-
-        self.bt1.setStyleSheet("""QPushButton{
-	background-color: rgb(186, 189, 182);
-	border-radius: 20px;
-	font: 30pt "Times New Roman";
-	color:rgb(164, 0, 0);
-}
-QPushButton:pressed {
-    background-color: rgb(156, 159, 152);
-    border-style: inset;
-} """)
+    def btChangeModeAction(self):
+        self.close()
+        beginDialog = BeginDialog()
+        beginDialog.show()
 
     # TODO needs more testing
     def btAction(self, rbr, name):
-        if self.started:
-            self.game.updateTableStatePlayer(rbr, self.buttons[name])   
+        self.game.updateTableStatePlayer(rbr, self.buttons[name])   
 
     def bt0Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(0, self.buttons["bt0"])   
     def bt1Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(1, self.buttons["bt1"])
     def bt2Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(2, self.buttons["bt2"])
     def bt3Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(3, self.buttons["bt3"])
     def bt4Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(4, self.buttons["bt4"])
     def bt5Action(self):
-        if self.started:    
             self.game.updateTableStatePlayer(5, self.buttons["bt5"])
     def bt6Action(self):
-        if self.started:            
             self.game.updateTableStatePlayer(6, self.buttons["bt6"])
     def bt7Action(self):
-        if self.started:    
             self.game.updateTableStatePlayer(7, self.buttons["bt7"])
     def bt8Action(self):
-        if self.started:
             self.game.updateTableStatePlayer(8, self.buttons["bt8"])
-    
-if __name__ == '__main__':
+
+def main():            
     app = QtWidgets.QApplication(sys.argv)
-    xo = XO()
-    xo.show()
+
+    beginDialog = BeginDialog()
+    beginDialog.show()
+
     sys.exit(app.exec_())
+
+if __name__ == '__main__':
+    main()
+    
+    
+    

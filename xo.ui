@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1202</width>
+    <width>1200</width>
     <height>800</height>
    </rect>
   </property>
@@ -362,76 +362,23 @@ QPushButton:pressed {
     <zorder>bt7</zorder>
     <zorder>bt6</zorder>
    </widget>
-   <widget class="QFrame" name="horizontalFrame">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>340</x>
-      <y>20</y>
-      <width>581</width>
-      <height>121</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(238, 238, 236);
-border-radius: 20px</string>
-    </property>
-    <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
-     <property name="topMargin">
-      <number>10</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="btStart">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="MinimumExpanding">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="layoutDirection">
-        <enum>Qt::LeftToRight</enum>
-       </property>
-       <property name="autoFillBackground">
-        <bool>false</bool>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QPushButton#btStart{
-	background-color: rgb(138, 226, 52);
-	border-radius: 30px;
-	padding: 5px;
-	font: 40pt &quot;Times New Roman&quot;;
-}
-QPushButton#btStart:pressed{
-	 background-color: rgb(118, 200, 32);
-    border-style: inset;
-}</string>
-       </property>
-       <property name="text">
-        <string>START</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </widget>
    <widget class="QPushButton" name="btRestart">
     <property name="geometry">
      <rect>
-      <x>970</x>
+      <x>950</x>
       <y>590</y>
-      <width>186</width>
+      <width>202</width>
       <height>61</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton#btRestart{
 	background-color: red;
-	border-style: outset;
-	border-width: 2px;
+	border-style: inset;
+	border-width: 3px;
 	border-radius: 10px;
 	alternate-background-color: rgb(52, 101, 164);
-	border-color: beige;
+	border-color: rgb(0, 0, 0);
 	font: bold 14px;
 	min-width: 10em;
 	padding: 6px;
@@ -457,9 +404,9 @@ QPushButton#btRestart:pressed {
    <widget class="QFrame" name="horizontalFrame">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>20</y>
-      <width>331</width>
+      <x>70</x>
+      <y>30</y>
+      <width>351</width>
       <height>121</height>
      </rect>
     </property>
@@ -485,9 +432,9 @@ border-radius: 20px;
       <number>5</number>
      </property>
      <item>
-      <widget class="QLabel" name="lbPlayer">
+      <widget class="QLabel" name="lbPlayer1">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -513,38 +460,13 @@ border-radius: 20px;
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QLabel" name="lbX">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: white;
-background-color: rgb(136, 138, 133);
-font: 36pt &quot;Times New Roman&quot;;
-border-radius: 20px;</string>
-       </property>
-       <property name="text">
-        <string>X</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::PlainText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
-       </property>
-      </widget>
-     </item>
     </layout>
    </widget>
    <widget class="QFrame" name="horizontalFrame">
     <property name="geometry">
      <rect>
-      <x>930</x>
-      <y>20</y>
+      <x>881</x>
+      <y>30</y>
       <width>271</width>
       <height>121</height>
      </rect>
@@ -567,7 +489,7 @@ border-radius: 20px</string>
       <number>5</number>
      </property>
      <item>
-      <widget class="QLabel" name="lbPlayer_3">
+      <widget class="QLabel" name="lbPlayer2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -592,31 +514,6 @@ border-radius: 20px;
        </property>
        <property name="margin">
         <number>5</number>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QLabel" name="lbX_2">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">color: white;
-background-color: rgb(136, 138, 133);
-font: 36pt &quot;Times New Roman&quot;;
-border-radius: 20px;</string>
-       </property>
-       <property name="text">
-        <string>O</string>
-       </property>
-       <property name="textFormat">
-        <enum>Qt::PlainText</enum>
-       </property>
-       <property name="alignment">
-        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>
@@ -798,8 +695,46 @@ border-radius: 20px;</string>
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <widget class="QPushButton" name="btChangeMode">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>590</y>
+      <width>202</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton#btChangeMode{
+	background-color: red;
+	border-style: inset;
+	border-width: 3px;
+	border-radius: 10px;
+	alternate-background-color: rgb(52, 101, 164);
+	border-color: rgb(0, 0, 0);
+	font: bold 14px;
+	min-width: 10em;
+	padding: 6px;
+}
+QPushButton#btChangeMode:pressed {
+    background-color: rgb(224, 0, 0);
+    border-style: inset;
+}</string>
+    </property>
+    <property name="text">
+     <string>CHANGE MODE</string>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
    <zorder>xo_object</zorder>
-   <zorder>horizontalFrame</zorder>
    <zorder>btRestart</zorder>
    <zorder>horizontalFrame</zorder>
    <zorder>horizontalFrame</zorder>
@@ -812,13 +747,14 @@ border-radius: 20px;</string>
    <zorder>lnDiagTopLeft</zorder>
    <zorder>lnDiagTopRIght</zorder>
    <zorder>gwCentralView</zorder>
+   <zorder>btChangeMode</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1202</width>
+     <width>1200</width>
      <height>22</height>
     </rect>
    </property>

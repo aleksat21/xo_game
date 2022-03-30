@@ -1,17 +1,12 @@
-from pickle import NONE
-from select import select
-from typing import List
-from unittest import case
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QShortcut
 from PyQt5.QtGui import QKeySequence
 
 from typing import List
-
 import copy
 
 class Game:
-    def __init__(self, buttons:dict = None, lines:dict = None, graphicsView:QtWidgets.QGraphicsView = None):
+    def __init__(self, buttons:dict = None, lines:dict = None, graphicsView:QtWidgets.QGraphicsView = None, mode = None):
         self.table_state = [['.', '.','.'], 
                             ['.', '.','.'], 
                             ['.', '.','.']]
@@ -21,6 +16,9 @@ class Game:
         # 1 je igrac, 2 je racunar za sada
         self.player_turn = 1
 
+
+        # mode 1 - vs AI ,  2 - vs player
+        self.mode = mode
 
         self.buttons = buttons
 
@@ -74,7 +72,6 @@ class Game:
                 else:
                     return 1
             elif (table_state[1][1] == table_state[0][2] and table_state[0][2] == table_state[2][0]):
-                # TODO dijagonala
                 if self.finished:
                     self.graphicsView.raise_()
                     self.lines["DTL"].show()
@@ -83,8 +80,6 @@ class Game:
                 else:
                     return 1
             elif(table_state[1][1] == table_state[0][0] and table_state[0][0] == table_state[2][2]):   
-                # TODO dijagonala
-                
                 if self.finished:
                     self.graphicsView.raise_()
                     self.lines["DTR"].show()
@@ -149,28 +144,72 @@ class Game:
         return pobednik
     
     def updateTableStatePlayer(self, rbr: int, clickedButton: QtWidgets.QPushButton):
-         if self.player_turn == 1:
-            (x , y) = self.find_in_matrix(rbr + 1)
-            self.table_state[x][y] = 'X'
-
-            # TODO , ocistiti malo ovaj deo koda ako moze krace da se menja samo boja , probati sa .setFont(QColor)
-            clickedButton.setStyleSheet("""QPushButton{
-	                                    background-color: rgb(186, 189, 182);
-	                                    border-radius: 20px;
-	                                    font: 30pt "Times New Roman";
-	                                    color: rgb(204, 0, 0);
-                                    }
-                                    QPushButton:pressed {
-                                        background-color: rgb(156, 159, 152);
-                                        border-style: inset;
-                                    } """)
-            clickedButton.setText("X")
-            clickedButton.setEnabled(False)
-
-            if self.testWinner() == None:
-                self.player_turn = 2
-                self.updateTableStateAI()
+        # vs AI
+        if self.mode == 1:
+            if self.player_turn == 1:
+                (x , y) = self.find_in_matrix(rbr + 1)
+                self.table_state[x][y] = 'X'
     
+                # TODO , ocistiti malo ovaj deo koda ako moze krace da se menja samo boja , probati sa .setFont(QColor)
+                clickedButton.setStyleSheet("""QPushButton{
+                                            background-color: rgb(186, 189, 182);
+                                            border-radius: 20px;
+                                            font: 30pt "Times New Roman";
+                                            color: rgb(204, 0, 0);
+                                        }
+                                        QPushButton:pressed {
+                                            background-color: rgb(156, 159, 152);
+                                            border-style: inset;
+                                        } """)
+                clickedButton.setText("X")
+                clickedButton.setEnabled(False)
+                    
+                if self.testWinner() == None:
+                    self.player_turn = 2
+                    self.updateTableStateAI()
+        # singleplayer
+        if self.mode == 2:
+            if self.player_turn == 1:
+                (x , y) = self.find_in_matrix(rbr + 1)
+                self.table_state[x][y] = 'X'
+   
+                # TODO , ocistiti malo ovaj deo koda ako moze krace da se menja samo boja , probati sa .setFont(QColor)
+                clickedButton.setStyleSheet("""QPushButton{
+                                           background-color: rgb(186, 189, 182);
+                                           border-radius: 20px;
+                                           font: 30pt "Times New Roman";
+                                           color: rgb(204, 0, 0);
+                                       }
+                                       QPushButton:pressed {
+                                           background-color: rgb(156, 159, 152);
+                                           border-style: inset;
+                                       } """)
+                clickedButton.setText("X")
+                clickedButton.setEnabled(False)
+
+                if self.testWinner() == None:
+                    self.player_turn = 2
+            elif self.player_turn == 2:
+                (x , y) = self.find_in_matrix(rbr + 1)
+                self.table_state[x][y] = 'O'
+   
+                # TODO , ocistiti malo ovaj deo koda ako moze krace da se menja samo boja , probati sa .setFont(QColor)
+                clickedButton.setStyleSheet("""QPushButton{
+                                     background-color: rgb(186, 189, 182);
+                                     border-radius: 20px;
+                                     font: 30pt "Times New Roman";
+                                     color:rgb(0, 0, 0);
+                                 }
+                                 QPushButton:pressed {
+                                     background-color: rgb(156, 159, 152);
+                                     border-style: inset;
+                                 } """)
+                clickedButton.setText("O")
+                clickedButton.setEnabled(False)
+
+                if self.testWinner() == None:
+                    self.player_turn = 1                            
+                
     def updateTableStateAI(self):
         if self.player_turn == 2:
             # TODO alpha-beta optimizacija

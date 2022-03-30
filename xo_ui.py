@@ -15,7 +15,7 @@ class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setEnabled(True)
-        MainWindow.resize(1202, 800)
+        MainWindow.resize(1200, 800)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -238,44 +238,15 @@ class Ui_MainWindow(object):
         self.bt8.raise_()
         self.bt7.raise_()
         self.bt6.raise_()
-        self.horizontalFrame = QtWidgets.QFrame(self.centralwidget)
-        self.horizontalFrame.setEnabled(True)
-        self.horizontalFrame.setGeometry(QtCore.QRect(340, 20, 581, 121))
-        self.horizontalFrame.setStyleSheet("background-color: rgb(238, 238, 236);\n"
-"border-radius: 20px")
-        self.horizontalFrame.setObjectName("horizontalFrame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.horizontalFrame)
-        self.horizontalLayout.setContentsMargins(-1, 10, -1, -1)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.btStart = QtWidgets.QPushButton(self.horizontalFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.MinimumExpanding)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.btStart.sizePolicy().hasHeightForWidth())
-        self.btStart.setSizePolicy(sizePolicy)
-        self.btStart.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.btStart.setAutoFillBackground(False)
-        self.btStart.setStyleSheet("QPushButton#btStart{\n"
-"    background-color: rgb(138, 226, 52);\n"
-"    border-radius: 30px;\n"
-"    padding: 5px;\n"
-"    font: 40pt \"Times New Roman\";\n"
-"}\n"
-"QPushButton#btStart:pressed{\n"
-"     background-color: rgb(118, 200, 32);\n"
-"    border-style: inset;\n"
-"}")
-        self.btStart.setObjectName("btStart")
-        self.horizontalLayout.addWidget(self.btStart)
         self.btRestart = QtWidgets.QPushButton(self.centralwidget)
-        self.btRestart.setGeometry(QtCore.QRect(970, 590, 186, 61))
+        self.btRestart.setGeometry(QtCore.QRect(950, 590, 202, 61))
         self.btRestart.setStyleSheet("QPushButton#btRestart{\n"
 "    background-color: red;\n"
-"    border-style: outset;\n"
-"    border-width: 2px;\n"
+"    border-style: inset;\n"
+"    border-width: 3px;\n"
 "    border-radius: 10px;\n"
 "    alternate-background-color: rgb(52, 101, 164);\n"
-"    border-color: beige;\n"
+"    border-color: rgb(0, 0, 0);\n"
 "    font: bold 14px;\n"
 "    min-width: 10em;\n"
 "    padding: 6px;\n"
@@ -288,82 +259,54 @@ class Ui_MainWindow(object):
         self.btRestart.setDefault(False)
         self.btRestart.setFlat(False)
         self.btRestart.setObjectName("btRestart")
-        self.horizontalFrame1 = QtWidgets.QFrame(self.centralwidget)
-        self.horizontalFrame1.setGeometry(QtCore.QRect(0, 20, 331, 121))
-        self.horizontalFrame1.setStyleSheet("background-color: rgb(238, 238, 236);\n"
+        self.horizontalFrame = QtWidgets.QFrame(self.centralwidget)
+        self.horizontalFrame.setGeometry(QtCore.QRect(70, 30, 351, 121))
+        self.horizontalFrame.setStyleSheet("background-color: rgb(238, 238, 236);\n"
 "border-radius: 20px;\n"
 "")
-        self.horizontalFrame1.setObjectName("horizontalFrame1")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalFrame1)
+        self.horizontalFrame.setObjectName("horizontalFrame")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.horizontalFrame)
         self.horizontalLayout_2.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout_2.setSpacing(5)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.lbPlayer = QtWidgets.QLabel(self.horizontalFrame1)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        self.lbPlayer1 = QtWidgets.QLabel(self.horizontalFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lbPlayer.sizePolicy().hasHeightForWidth())
-        self.lbPlayer.setSizePolicy(sizePolicy)
-        self.lbPlayer.setStyleSheet("color: white;\n"
+        sizePolicy.setHeightForWidth(self.lbPlayer1.sizePolicy().hasHeightForWidth())
+        self.lbPlayer1.setSizePolicy(sizePolicy)
+        self.lbPlayer1.setStyleSheet("color: white;\n"
 "background-color: rgb(239, 41, 41);\n"
 "font: 36pt \"Times New Roman\";\n"
 "border-radius: 20px;\n"
 "")
-        self.lbPlayer.setTextFormat(QtCore.Qt.PlainText)
-        self.lbPlayer.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbPlayer.setObjectName("lbPlayer")
-        self.horizontalLayout_2.addWidget(self.lbPlayer)
-        self.lbX = QtWidgets.QLabel(self.horizontalFrame1)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lbX.sizePolicy().hasHeightForWidth())
-        self.lbX.setSizePolicy(sizePolicy)
-        self.lbX.setStyleSheet("color: white;\n"
-"background-color: rgb(136, 138, 133);\n"
-"font: 36pt \"Times New Roman\";\n"
-"border-radius: 20px;")
-        self.lbX.setTextFormat(QtCore.Qt.PlainText)
-        self.lbX.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbX.setObjectName("lbX")
-        self.horizontalLayout_2.addWidget(self.lbX)
-        self.horizontalFrame2 = QtWidgets.QFrame(self.centralwidget)
-        self.horizontalFrame2.setGeometry(QtCore.QRect(930, 20, 271, 121))
-        self.horizontalFrame2.setStyleSheet("background-color: rgb(238, 238, 236);\n"
+        self.lbPlayer1.setTextFormat(QtCore.Qt.PlainText)
+        self.lbPlayer1.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbPlayer1.setObjectName("lbPlayer1")
+        self.horizontalLayout_2.addWidget(self.lbPlayer1)
+        self.horizontalFrame1 = QtWidgets.QFrame(self.centralwidget)
+        self.horizontalFrame1.setGeometry(QtCore.QRect(881, 30, 271, 121))
+        self.horizontalFrame1.setStyleSheet("background-color: rgb(238, 238, 236);\n"
 "border-radius: 20px")
-        self.horizontalFrame2.setObjectName("horizontalFrame2")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.horizontalFrame2)
+        self.horizontalFrame1.setObjectName("horizontalFrame1")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.horizontalFrame1)
         self.horizontalLayout_3.setContentsMargins(5, 5, 5, 5)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.lbPlayer_3 = QtWidgets.QLabel(self.horizontalFrame2)
+        self.lbPlayer2 = QtWidgets.QLabel(self.horizontalFrame1)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lbPlayer_3.sizePolicy().hasHeightForWidth())
-        self.lbPlayer_3.setSizePolicy(sizePolicy)
-        self.lbPlayer_3.setStyleSheet("color: white;\n"
+        sizePolicy.setHeightForWidth(self.lbPlayer2.sizePolicy().hasHeightForWidth())
+        self.lbPlayer2.setSizePolicy(sizePolicy)
+        self.lbPlayer2.setStyleSheet("color: white;\n"
 "background-color: rgb(239, 41, 41);\n"
 "font: 36pt \"Times New Roman\";\n"
 "border-radius: 20px;\n"
 "")
-        self.lbPlayer_3.setTextFormat(QtCore.Qt.PlainText)
-        self.lbPlayer_3.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbPlayer_3.setObjectName("lbPlayer_3")
-        self.horizontalLayout_3.addWidget(self.lbPlayer_3)
-        self.lbX_2 = QtWidgets.QLabel(self.horizontalFrame2)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lbX_2.sizePolicy().hasHeightForWidth())
-        self.lbX_2.setSizePolicy(sizePolicy)
-        self.lbX_2.setStyleSheet("color: white;\n"
-"background-color: rgb(136, 138, 133);\n"
-"font: 36pt \"Times New Roman\";\n"
-"border-radius: 20px;")
-        self.lbX_2.setTextFormat(QtCore.Qt.PlainText)
-        self.lbX_2.setAlignment(QtCore.Qt.AlignCenter)
-        self.lbX_2.setObjectName("lbX_2")
-        self.horizontalLayout_3.addWidget(self.lbX_2)
+        self.lbPlayer2.setTextFormat(QtCore.Qt.PlainText)
+        self.lbPlayer2.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbPlayer2.setObjectName("lbPlayer2")
+        self.horizontalLayout_3.addWidget(self.lbPlayer2)
         self.lnHU = QtWidgets.QFrame(self.centralwidget)
         self.lnHU.setEnabled(True)
         self.lnHU.setGeometry(QtCore.QRect(406, 274, 481, 10))
@@ -426,8 +369,28 @@ class Ui_MainWindow(object):
         self.lnDiagTopRIght.setFrameShape(QtWidgets.QFrame.VLine)
         self.lnDiagTopRIght.setFrameShadow(QtWidgets.QFrame.Sunken)
         self.lnDiagTopRIght.setObjectName("lnDiagTopRIght")
+        self.btChangeMode = QtWidgets.QPushButton(self.centralwidget)
+        self.btChangeMode.setGeometry(QtCore.QRect(70, 590, 202, 61))
+        self.btChangeMode.setStyleSheet("QPushButton#btChangeMode{\n"
+"    background-color: red;\n"
+"    border-style: inset;\n"
+"    border-width: 3px;\n"
+"    border-radius: 10px;\n"
+"    alternate-background-color: rgb(52, 101, 164);\n"
+"    border-color: rgb(0, 0, 0);\n"
+"    font: bold 14px;\n"
+"    min-width: 10em;\n"
+"    padding: 6px;\n"
+"}\n"
+"QPushButton#btChangeMode:pressed {\n"
+"    background-color: rgb(224, 0, 0);\n"
+"    border-style: inset;\n"
+"}")
+        self.btChangeMode.setAutoDefault(False)
+        self.btChangeMode.setDefault(False)
+        self.btChangeMode.setFlat(False)
+        self.btChangeMode.setObjectName("btChangeMode")
         self.xo_object.raise_()
-        self.horizontalFrame.raise_()
         self.btRestart.raise_()
         self.horizontalFrame.raise_()
         self.horizontalFrame.raise_()
@@ -440,9 +403,10 @@ class Ui_MainWindow(object):
         self.lnDiagTopLeft.raise_()
         self.lnDiagTopRIght.raise_()
         self.gwCentralView.raise_()
+        self.btChangeMode.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1202, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1200, 22))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
@@ -455,12 +419,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "XO Game"))
-        self.btStart.setText(_translate("MainWindow", "START"))
         self.btRestart.setText(_translate("MainWindow", "RESTART"))
-        self.lbPlayer.setText(_translate("MainWindow", "PLAYER"))
-        self.lbX.setText(_translate("MainWindow", "X"))
-        self.lbPlayer_3.setText(_translate("MainWindow", "AI"))
-        self.lbX_2.setText(_translate("MainWindow", "O"))
+        self.lbPlayer1.setText(_translate("MainWindow", "PLAYER"))
+        self.lbPlayer2.setText(_translate("MainWindow", "AI"))
+        self.btChangeMode.setText(_translate("MainWindow", "CHANGE MODE"))
 
 
 if __name__ == "__main__":
