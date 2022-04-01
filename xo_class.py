@@ -2,11 +2,24 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QShortcut
 from PyQt5.QtGui import QKeySequence
 
+
 from typing import List
 import copy
+from main import XO
 
 class Game:
-    def __init__(self, buttons:dict = None, lines:dict = None, graphicsView:QtWidgets.QGraphicsView = None, mode = None):
+    results = {"resP1" : 0 , "resP2" : 0 , "resTie" : 0}
+    resP1 = 0
+    resP2 = 0
+    resTie = 0
+
+    def clearResult():
+        Game.results["resP1"] = 0
+        Game.results["resP2"] = 0
+        Game.results["resTie"] = 0
+
+
+    def __init__(self, buttons:dict = None, lines:dict = None, graphicsView:QtWidgets.QGraphicsView = None, mode = None, label_players:dict = None, lcds:dict = None):
         self.table_state = [['.', '.','.'], 
                             ['.', '.','.'], 
                             ['.', '.','.']]
@@ -16,7 +29,12 @@ class Game:
         # 1 je igrac, 2 je racunar za sada
         self.player_turn = 1
 
+        # labele cije se boje menjaju u zavisnosti od poteza igraca
+        self.label_players = label_players
 
+        # rezultat
+        self.lcds = lcds
+        
         # mode 1 - vs AI ,  2 - vs player
         self.mode = mode
 
@@ -37,6 +55,7 @@ class Game:
             if (table_state[0][0] == table_state[0][1] and table_state[0][1] == table_state[0][2]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["HU"].show()
                 
                 if table_state[0][0] == 'X':
@@ -46,6 +65,7 @@ class Game:
             elif (table_state[0][0] == table_state[1][0] and table_state[1][0] == table_state[2][0]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["VL"].show()
 
                 if table_state[0][0] == 'X':
@@ -56,6 +76,7 @@ class Game:
             if (table_state[1][1] == table_state[0][1] and table_state[1][1] == table_state[2][1]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["VC"].show()
                 
                 if table_state[1][1] == 'X':
@@ -65,6 +86,7 @@ class Game:
             elif (table_state[1][1] == table_state[1][0] and table_state[1][0] == table_state[1][2]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["HC"].show()
                 
                 if table_state[1][1] == 'X':
@@ -92,6 +114,7 @@ class Game:
             if (table_state[2][2] == table_state[2][1] and table_state[2][1] == table_state[2][0]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["HB"].show()
                 
                 if table_state[2][2] == 'X':
@@ -101,6 +124,7 @@ class Game:
             elif (table_state[2][2] == table_state[1][2] and table_state[1][2] == table_state[0][2]):
                 
                 if self.finished:
+                    self.graphicsView.raise_()
                     self.lines["VR"].show()
                 
                 if table_state[2][2] == 'X':
@@ -113,7 +137,8 @@ class Game:
                 if el == '.':
                     return None
         return 0
-    
+
+
     def getNextSteps(table_state, sign):
         next_states = []
         next_steps = []
@@ -129,19 +154,41 @@ class Game:
     
     def testWinner(self):
         pobednik = self.evaluate(self.table_state)
-
-        restart = "Pritisnite restart da biste poceli ponovo partiju.."
         if pobednik != None:
             self.finished = True
             pobednik = self.evaluate(self.table_state)
             if pobednik == -1:
-                pass
+                Game.results["resP1"] += 1
+                self.lcds["lcdP1"].display(Game.results["resP1"])
             elif pobednik == 1:
-                pass
+                Game.results["resP2"] += 1
+                self.lcds["lcdP2"].display(Game.results["resP2"])
             elif pobednik == 0:
-                pass
-
+                Game.results["resTie"] += 1
+                self.lcds["lcdTie"].display(Game.results["resTie"])
         return pobednik
+    
+    def colorGreenFirstPlayer(self):
+        self.label_players["lbP1"].setStyleSheet("""color: white;
+                background-color: rgb(138, 226, 52);
+                font: 36pt "Times New Roman";
+                border-radius: 20px;
+                """)
+        self.label_players["lbP2"].setStyleSheet("""color: white;
+                background-color: rgb(239, 41, 41);
+                font: 36pt "Times New Roman";
+                border-radius: 20px;""")
+    def colorGreenSecondPlayer(self):
+        self.label_players["lbP2"].setStyleSheet("""color: white;
+                background-color: rgb(138, 226, 52);
+                font: 36pt "Times New Roman";
+                border-radius: 20px;
+                """)
+        self.label_players["lbP1"].setStyleSheet("""color: white;
+                background-color: rgb(239, 41, 41);
+                font: 36pt "Times New Roman";
+                border-radius: 20px;""")
+
     
     def updateTableStatePlayer(self, rbr: int, clickedButton: QtWidgets.QPushButton):
         # vs AI
@@ -170,6 +217,7 @@ class Game:
         # singleplayer
         if self.mode == 2:
             if self.player_turn == 1:
+                self.colorGreenSecondPlayer()
                 (x , y) = self.find_in_matrix(rbr + 1)
                 self.table_state[x][y] = 'X'
    
@@ -190,6 +238,7 @@ class Game:
                 if self.testWinner() == None:
                     self.player_turn = 2
             elif self.player_turn == 2:
+                self.colorGreenFirstPlayer()
                 (x , y) = self.find_in_matrix(rbr + 1)
                 self.table_state[x][y] = 'O'
    

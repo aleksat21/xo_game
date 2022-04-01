@@ -239,7 +239,7 @@ class Ui_MainWindow(object):
         self.bt7.raise_()
         self.bt6.raise_()
         self.btRestart = QtWidgets.QPushButton(self.centralwidget)
-        self.btRestart.setGeometry(QtCore.QRect(950, 590, 202, 61))
+        self.btRestart.setGeometry(QtCore.QRect(958, 590, 202, 61))
         self.btRestart.setStyleSheet("QPushButton#btRestart{\n"
 "    background-color: red;\n"
 "    border-style: inset;\n"
@@ -276,7 +276,7 @@ class Ui_MainWindow(object):
         sizePolicy.setHeightForWidth(self.lbPlayer1.sizePolicy().hasHeightForWidth())
         self.lbPlayer1.setSizePolicy(sizePolicy)
         self.lbPlayer1.setStyleSheet("color: white;\n"
-"background-color: rgb(239, 41, 41);\n"
+"background-color: rgb(138, 226, 52);\n"
 "font: 36pt \"Times New Roman\";\n"
 "border-radius: 20px;\n"
 "")
@@ -285,7 +285,7 @@ class Ui_MainWindow(object):
         self.lbPlayer1.setObjectName("lbPlayer1")
         self.horizontalLayout_2.addWidget(self.lbPlayer1)
         self.horizontalFrame1 = QtWidgets.QFrame(self.centralwidget)
-        self.horizontalFrame1.setGeometry(QtCore.QRect(881, 30, 271, 121))
+        self.horizontalFrame1.setGeometry(QtCore.QRect(809, 30, 351, 121))
         self.horizontalFrame1.setStyleSheet("background-color: rgb(238, 238, 236);\n"
 "border-radius: 20px")
         self.horizontalFrame1.setObjectName("horizontalFrame1")
@@ -390,6 +390,81 @@ class Ui_MainWindow(object):
         self.btChangeMode.setDefault(False)
         self.btChangeMode.setFlat(False)
         self.btChangeMode.setObjectName("btChangeMode")
+        self.lcdPlayer1 = QtWidgets.QLCDNumber(self.centralwidget)
+        self.lcdPlayer1.setGeometry(QtCore.QRect(70, 153, 231, 161))
+        font = QtGui.QFont()
+        font.setStrikeOut(False)
+        self.lcdPlayer1.setFont(font)
+        self.lcdPlayer1.setStyleSheet("QLCDNumber{\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    border-style: inset;\n"
+"    border-width: 5px;\n"
+"    border-color: rgb(0, 0, 0)\n"
+"    \n"
+"}")
+        self.lcdPlayer1.setSmallDecimalPoint(True)
+        self.lcdPlayer1.setProperty("intValue", 0)
+        self.lcdPlayer1.setObjectName("lcdPlayer1")
+        self.horizontalFrame2 = QtWidgets.QFrame(self.centralwidget)
+        self.horizontalFrame2.setGeometry(QtCore.QRect(430, 30, 371, 121))
+        self.horizontalFrame2.setStyleSheet("background: transparent;")
+        self.horizontalFrame2.setObjectName("horizontalFrame2")
+        self.hbTie = QtWidgets.QHBoxLayout(self.horizontalFrame2)
+        self.hbTie.setContentsMargins(5, 5, 5, 5)
+        self.hbTie.setObjectName("hbTie")
+        self.lbTie = QtWidgets.QLabel(self.horizontalFrame2)
+        font = QtGui.QFont()
+        font.setFamily("Times New Roman")
+        font.setPointSize(20)
+        font.setBold(True)
+        font.setWeight(75)
+        self.lbTie.setFont(font)
+        self.lbTie.setStyleSheet("QLabel#lbTie{\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    border-style: solid;\n"
+"    border-right-style: dotted;\n"
+"    border-width: 10px 5px 10px 10px;\n"
+"    border-color: rgb(239, 41, 41)\n"
+"\n"
+"}")
+        self.lbTie.setAlignment(QtCore.Qt.AlignCenter)
+        self.lbTie.setObjectName("lbTie")
+        self.hbTie.addWidget(self.lbTie)
+        self.lcdTie = QtWidgets.QLCDNumber(self.horizontalFrame2)
+        self.lcdTie.setStyleSheet("QLCDNumber#lcdTie{\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    border-style: solid;\n"
+"    border-left-style: dotted;\n"
+"    border-width: 10px 10px 10px 5px;\n"
+"    border-color: rgb(0, 0, 0)\n"
+"\n"
+"}")
+        self.lcdTie.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.lcdTie.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.lcdTie.setLineWidth(6)
+        self.lcdTie.setSmallDecimalPoint(True)
+        self.lcdTie.setDigitCount(4)
+        self.lcdTie.setObjectName("lcdTie")
+        self.hbTie.addWidget(self.lcdTie)
+        self.hbTie.setStretch(0, 2)
+        self.hbTie.setStretch(1, 3)
+        self.lcdPlayer2 = QtWidgets.QLCDNumber(self.centralwidget)
+        self.lcdPlayer2.setGeometry(QtCore.QRect(928, 153, 231, 161))
+        font = QtGui.QFont()
+        font.setStrikeOut(False)
+        self.lcdPlayer2.setFont(font)
+        self.lcdPlayer2.setStyleSheet("QLCDNumber{\n"
+"    background-color: rgb(238, 238, 236);\n"
+"    border-style: inset;\n"
+"    border-width: 5px;\n"
+"    border-color: rgb(0, 0, 0)\n"
+"    \n"
+"}")
+        self.lcdPlayer2.setSmallDecimalPoint(True)
+        self.lcdPlayer2.setDigitCount(5)
+        self.lcdPlayer2.setProperty("value", 0.0)
+        self.lcdPlayer2.setProperty("intValue", 0)
+        self.lcdPlayer2.setObjectName("lcdPlayer2")
         self.xo_object.raise_()
         self.btRestart.raise_()
         self.horizontalFrame.raise_()
@@ -404,6 +479,9 @@ class Ui_MainWindow(object):
         self.lnDiagTopRIght.raise_()
         self.gwCentralView.raise_()
         self.btChangeMode.raise_()
+        self.lcdPlayer1.raise_()
+        self.horizontalFrame.raise_()
+        self.lcdPlayer2.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1200, 22))
@@ -423,3 +501,4 @@ class Ui_MainWindow(object):
         self.lbPlayer1.setText(_translate("MainWindow", "PLAYER"))
         self.lbPlayer2.setText(_translate("MainWindow", "AI"))
         self.btChangeMode.setText(_translate("MainWindow", "CHANGE MODE"))
+        self.lbTie.setText(_translate("MainWindow", "TIE:"))

@@ -14,6 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
+        Dialog.setWindowModality(QtCore.Qt.NonModal)
         Dialog.resize(507, 412)
         Dialog.setStyleSheet("padding: 20px;\n"
 "background-color:qlineargradient(spread:pad, x1:0.08, y1:0.063, x2:0.99, y2:0.903, stop:0 rgba(114, 159, 207, 255), stop:1 rgba(255, 255, 255, 255));\n"
@@ -214,7 +215,7 @@ class Ui_Dialog(object):
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
-        Dialog.setWindowTitle(_translate("Dialog", "Dialog"))
+        Dialog.setWindowTitle(_translate("Dialog", "Menu"))
         self.rbPVP.setText(_translate("Dialog", "PVP"))
         self.rbSinglePlayer.setText(_translate("Dialog", "Singleplayer"))
         self.lbPrvi.setText(_translate("Dialog", "Player 1:"))

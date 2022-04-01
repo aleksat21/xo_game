@@ -1,6 +1,9 @@
 from ast import Import
+from enum import Flag
 from re import S
 from statistics import mode
+import string
+from unittest import result
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog, QShortcut, QMessageBox
 from PyQt5.QtGui import QKeySequence
@@ -15,7 +18,10 @@ class BeginDialog(beginDialog_ui.Ui_Dialog, QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
-       
+
+        # move to center
+        self.move(QtWidgets.QApplication.desktop().screen().rect().center() - self.geometry().center())
+
         self.hideAllInput()
         
         self.btStart.pressed.connect(lambda: self.begin())
@@ -63,13 +69,14 @@ class BeginDialog(beginDialog_ui.Ui_Dialog, QtWidgets.QMainWindow):
             xo = XO(mode = 2, player1=self.lnPrvi.text(), player2=self.lnDrugi.text())
             xo.show()
 
-
 class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
-    # TODO staviti da se menjaju boje u zavisnosti ko je na redu
-    # TODO mozda staviti naizmenicno da se smenjuju kada je mode=2, odnosno ko je X a ko je O
-    def __init__(self, mode, player1 = "Player 1" , player2 = "AI"):
+
+    def __init__(self, mode, player1 = "Player 1" , player2 = "AI", scoreP1 = 0, scoreP2 = 0):
         super(XO, self).__init__()
         self.setupUi(self)
+
+        # move to center
+        self.move(QtWidgets.QApplication.desktop().screen().rect().center() - self.geometry().center())
 
         # mod 1 - vs AI 2 - pvp
         self.mode = mode
@@ -81,6 +88,15 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         # podesiti fiksnu duzinu
         self.setFixedSize(1200, 800)
 
+        # lcd display & scores
+        self.scoreP1 = scoreP1
+        self.scoreP2 = scoreP2
+        scores = {"scoreP1" : scoreP1, "scoreP2" : scoreP2}
+
+        self.lcds = {"lcdP1" : self.lcdPlayer1 , "lcdP2" : self.lcdPlayer2 , "lcdTie" : self.lcdTie}
+
+        # labels for players
+        self.label_players = {"lbP1" : self.lbPlayer1, "lbP2" : self.lbPlayer2} 
 
         # mapiranje dugmica koji se prosledjuju xo_class.Game konstruktoru
         self.buttons = {"bt0" : self.bt0, "bt1" : self.bt1, "bt2" : self.bt2, "bt3" : self.bt3, "bt4" : self.bt4, "bt5" : self.bt5, "bt6" : self.bt6, "bt7" : self.bt7, "bt8" :self.bt8}
@@ -113,8 +129,8 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.bt7.pressed.connect(lambda: self.bt7Action())
         self.bt8.pressed.connect(lambda: self.bt8Action())
 
-        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode = self.mode)
-    
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode = self.mode, label_players = self.label_players, lcds=self.lcds)
+
         # TODO dodati LCD display koji broji rezultat
 
     def configDiagonals(self):
@@ -153,39 +169,48 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
     def btRestartAction(self):
         self.clearButtons()
         self.hideLines()
-        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode=self.mode)
+
+        del self.game
+        self.game = xo_class.Game(buttons=self.buttons, lines=self.lines, graphicsView=self.gwCentralView, mode = self.mode, label_players = self.label_players, lcds=self.lcds)
 
     def btChangeModeAction(self):
+        for name, value in self.lcds.items():
+            self.lcds[name].clearMask()
+
+        # opt next 2 lines
+        self.hide()
         self.close()
+        xo_class.Game.clearResult()
+        del self
         beginDialog = BeginDialog()
         beginDialog.show()
-
+        
     # TODO needs more testing
     def btAction(self, rbr, name):
-        self.game.updateTableStatePlayer(rbr, self.buttons[name])   
+        self.game.updateTableStatePlayer(rbr, self.buttons[name]) 
 
     def bt0Action(self):
-            self.game.updateTableStatePlayer(0, self.buttons["bt0"])   
+        self.game.updateTableStatePlayer(0, self.buttons["bt0"])  
     def bt1Action(self):
-            self.game.updateTableStatePlayer(1, self.buttons["bt1"])
+        self.game.updateTableStatePlayer(1, self.buttons["bt1"])
     def bt2Action(self):
-            self.game.updateTableStatePlayer(2, self.buttons["bt2"])
+        self.game.updateTableStatePlayer(2, self.buttons["bt2"])
     def bt3Action(self):
-            self.game.updateTableStatePlayer(3, self.buttons["bt3"])
+        self.game.updateTableStatePlayer(3, self.buttons["bt3"])
     def bt4Action(self):
-            self.game.updateTableStatePlayer(4, self.buttons["bt4"])
+        self.game.updateTableStatePlayer(4, self.buttons["bt4"])
     def bt5Action(self):
-            self.game.updateTableStatePlayer(5, self.buttons["bt5"])
+        self.game.updateTableStatePlayer(5, self.buttons["bt5"])    
     def bt6Action(self):
-            self.game.updateTableStatePlayer(6, self.buttons["bt6"])
+        self.game.updateTableStatePlayer(6, self.buttons["bt6"])
     def bt7Action(self):
-            self.game.updateTableStatePlayer(7, self.buttons["bt7"])
+        self.game.updateTableStatePlayer(7, self.buttons["bt7"])
     def bt8Action(self):
-            self.game.updateTableStatePlayer(8, self.buttons["bt8"])
-
+        self.game.updateTableStatePlayer(8, self.buttons["bt8"])
+        
 def main():            
     app = QtWidgets.QApplication(sys.argv)
-
+    
     beginDialog = BeginDialog()
     beginDialog.show()
 
