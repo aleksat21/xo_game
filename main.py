@@ -19,11 +19,13 @@ class BeginDialog(beginDialog_ui.Ui_Dialog, QtWidgets.QMainWindow):
         super().__init__()
         self.setupUi(self)
 
+        self.show()
+
         # move to center
         self.move(QtWidgets.QApplication.desktop().screen().rect().center() - self.geometry().center())
 
         self.hideAllInput()
-        
+
         self.btStart.pressed.connect(lambda: self.begin())
         self.rbPVP.pressed.connect(lambda: self.showPVP())
         self.rbSinglePlayer.pressed.connect(lambda: self.showSinglePlayer())
@@ -60,20 +62,22 @@ class BeginDialog(beginDialog_ui.Ui_Dialog, QtWidgets.QMainWindow):
         
 
     def begin(self):
-        if self.rbSinglePlayer.isChecked() and len(self.lnPrvi.text()) != 0:
+        if self.rbSinglePlayer.isChecked() and len(self.lnPrvi.text()) != 0 and not self.rbPVP.isChecked():
             self.close()
             xo = XO(mode = 1, player1 = self.lnPrvi.text())
-            xo.show()
-        if self.rbPVP.isChecked() and len(self.lnPrvi.text()) != 0 and len(self.lnDrugi.text()) != 0:
+        if self.rbPVP.isChecked() and len(self.lnPrvi.text()) != 0 and len(self.lnDrugi.text()) != 0 and not self.rbSinglePlayer.isChecked():
             self.close()
             xo = XO(mode = 2, player1=self.lnPrvi.text(), player2=self.lnDrugi.text())
-            xo.show()
+        del self
 
 class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
 
+    beginDialog = None
     def __init__(self, mode, player1 = "Player 1" , player2 = "AI", scoreP1 = 0, scoreP2 = 0):
         super(XO, self).__init__()
         self.setupUi(self)
+
+        self.show()
 
         # move to center
         self.move(QtWidgets.QApplication.desktop().screen().rect().center() - self.geometry().center())
@@ -178,12 +182,10 @@ class XO(xo_ui.Ui_MainWindow, QtWidgets.QMainWindow):
             self.lcds[name].clearMask()
 
         # opt next 2 lines
-        self.hide()
         self.close()
         xo_class.Game.clearResult()
         del self
-        beginDialog = BeginDialog()
-        beginDialog.show()
+        XO.beginDialog = BeginDialog()
         
     # TODO needs more testing
     def btAction(self, rbr, name):

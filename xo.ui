@@ -410,6 +410,12 @@ QPushButton#btRestart:pressed {
       <height>121</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(238, 238, 236);
 border-radius: 20px;
@@ -434,7 +440,7 @@ border-radius: 20px;
      <item>
       <widget class="QLabel" name="lbPlayer1">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -471,6 +477,12 @@ border-radius: 20px;
       <height>121</height>
      </rect>
     </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-color: rgb(238, 238, 236);
 border-radius: 20px</string>
@@ -491,7 +503,7 @@ border-radius: 20px</string>
      <item>
       <widget class="QLabel" name="lbPlayer2">
        <property name="sizePolicy">
-        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
